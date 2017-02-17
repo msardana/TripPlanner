@@ -4,3 +4,5 @@ applications:
   memory: 512M
   host: mytripbook
   domain: mybluemix.net
+  path: service-1.0.0-BUILD.war
+  buildpack: liberty-for-java
