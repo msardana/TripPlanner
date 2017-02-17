@@ -1,0 +1,6 @@
+---
+applications:
+- name: mytripbook
+  memory: 512M
+  host: mytripbook
+  domain: mybluemix.net
