@@ -14,7 +14,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-    </dependencies>
+        <dependency>
+        	<groupId>com.google.maps</groupId>
+        	<artifactId>google-maps-services</artifactId>
+        	<version>0.1.17</version>
+        </dependency>
+          </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
