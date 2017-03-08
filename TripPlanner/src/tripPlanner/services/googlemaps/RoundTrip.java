@@ -7,6 +7,7 @@ import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.TravelMode;
 
 
 /**
@@ -22,7 +23,13 @@ public class RoundTrip {
 	
 	private String origin;
 	private ArrayList<String> wayPoints;
+	private TravelMode modeofTransport=TravelMode.DRIVING;
+	
+
 	private String API_KEY;
+	private int waypointorder[];
+	
+	
 	
 	//to be used later
 	//private Stack<String> placeOfInterest;
@@ -32,6 +39,17 @@ public class RoundTrip {
 		API_KEY = aPI_KEY;
 	}
 
+	public void setModeofTransport(String mode) {
+		if(mode.equalsIgnoreCase("Driving") || mode.equalsIgnoreCase("Road") || mode.equalsIgnoreCase("Car") || mode.equalsIgnoreCase("Bike"))
+			modeofTransport = TravelMode.DRIVING;	
+		else if(mode.equalsIgnoreCase("walking"))
+			modeofTransport = TravelMode.WALKING;
+		else if(mode.equalsIgnoreCase("bicycling") || mode.equalsIgnoreCase("bicycle") || mode.equalsIgnoreCase("cycle"))
+			modeofTransport = TravelMode.BICYCLING;
+		else
+			modeofTransport = TravelMode.TRANSIT;
+	}
+	
 	public RoundTrip(String orgin, ArrayList<String> wayPoints) {
 		super();
 		this.origin = orgin;
@@ -42,8 +60,10 @@ public class RoundTrip {
 	{
 		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
 		DirectionsApiRequest req =  DirectionsApi.getDirections(context, origin, origin);
+		req.mode(modeofTransport);
 		req.optimizeWaypoints(true);
 		req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
+		
 		DirectionsResult result = req.await();
 		
 		return result.routes[0];
