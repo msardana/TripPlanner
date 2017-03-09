@@ -2,6 +2,7 @@ package com.tripplanner.googlemaps;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
@@ -24,15 +25,15 @@ public class RoundTrip {
 	private String origin;
 	private ArrayList<String> wayPoints;
 	private TravelMode modeofTransport=TravelMode.DRIVING;
-	
-
 	private String API_KEY;
-	private int waypointorder[];
+	private DirectionsResult result=null;
 	
 	
-	
-	//to be used later
-	//private Stack<String> placeOfInterest;
+	public RoundTrip(String orgin, ArrayList<String> wayPoints) {
+		super();
+		this.origin = orgin;
+		this.wayPoints = wayPoints;
+	}
 	
 
 	public void setAPI_KEY(String aPI_KEY) {
@@ -50,11 +51,7 @@ public class RoundTrip {
 			modeofTransport = TravelMode.TRANSIT;
 	}
 	
-	public RoundTrip(String orgin, ArrayList<String> wayPoints) {
-		super();
-		this.origin = orgin;
-		this.wayPoints = wayPoints;
-	}
+	
 	
 	public DirectionsRoute calcRoundTrip() throws Exception 
 	{
@@ -65,16 +62,14 @@ public class RoundTrip {
 		req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
 		
 		DirectionsResult result = req.await();
-		
+		this.result = result;
 		return result.routes[0];
-		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public String getJson()
+	{
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(result);
+		return jsonString;
+	}
 }
