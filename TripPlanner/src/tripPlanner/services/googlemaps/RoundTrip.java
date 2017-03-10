@@ -19,7 +19,7 @@ import com.google.maps.model.TravelMode;
  */
 
 
-public class RoundTrip {
+public class RoundTrip implements PlanRoundTrip{
 
 	
 	private String origin;
@@ -35,11 +35,12 @@ public class RoundTrip {
 		this.wayPoints = wayPoints;
 	}
 	
-
+	@Override
 	public void setAPI_KEY(String aPI_KEY) {
 		API_KEY = aPI_KEY;
 	}
 
+	@Override
 	public void setModeofTransport(String mode) {
 		if(mode.equalsIgnoreCase("Driving") || mode.equalsIgnoreCase("Road") || mode.equalsIgnoreCase("Car") || mode.equalsIgnoreCase("Bike"))
 			modeofTransport = TravelMode.DRIVING;	
@@ -51,25 +52,46 @@ public class RoundTrip {
 			modeofTransport = TravelMode.TRANSIT;
 	}
 	
-	
-	
+	@Override
 	public DirectionsRoute calcRoundTrip() throws Exception 
 	{
 		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
 		DirectionsApiRequest req =  DirectionsApi.getDirections(context, origin, origin);
+		DirectionsResult result = new DirectionsResult();
 		req.mode(modeofTransport);
+		
 		req.optimizeWaypoints(true);
 		req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
 		
-		DirectionsResult result = req.await();
+		result = req.await();
 		this.result = result;
-		return result.routes[0];
+		//if(result!=null)
+			return result.routes[0];
+		/*else
+		{
+			req.mode(TravelMode.DRIVING);
+			req.optimizeWaypoints(true);
+			req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
+			result = req.await();
+			
+			int wayorder[] = result.routes[0].waypointOrder;
+			
+			String temp_origin = origin;
+			String temp_dest;
+			for(int i=0;i<wayorder.length;i++)
+			{
+				temp_dest = null;
+			}
+		}
+		return null;*/
 	}
 	
+	@Override
 	public String getJson()
 	{
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(result);
 		return jsonString;
 	}
+	
 }
