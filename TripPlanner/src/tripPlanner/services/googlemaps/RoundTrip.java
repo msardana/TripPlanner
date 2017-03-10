@@ -58,32 +58,15 @@ public class RoundTrip implements PlanRoundTrip{
 		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
 		DirectionsApiRequest req =  DirectionsApi.getDirections(context, origin, origin);
 		DirectionsResult result = new DirectionsResult();
-		req.mode(modeofTransport);
+		req.mode("driving");
 		
 		req.optimizeWaypoints(true);
 		req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
 		
 		result = req.await();
 		this.result = result;
-		//if(result!=null)
-			return result.routes[0];
-		/*else
-		{
-			req.mode(TravelMode.DRIVING);
-			req.optimizeWaypoints(true);
-			req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
-			result = req.await();
-			
-			int wayorder[] = result.routes[0].waypointOrder;
-			
-			String temp_origin = origin;
-			String temp_dest;
-			for(int i=0;i<wayorder.length;i++)
-			{
-				temp_dest = null;
-			}
-		}
-		return null;*/
+		return result.routes[0];
+		
 	}
 	
 	@Override
