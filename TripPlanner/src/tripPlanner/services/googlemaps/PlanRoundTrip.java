@@ -19,6 +19,7 @@ public interface PlanRoundTrip {
 	
 	DirectionsRoute calcRoundTrip() throws Exception;
 
+	public DirectionsRoute[] getResult();
 
-	String getJson();
+	public String getJson();
 }

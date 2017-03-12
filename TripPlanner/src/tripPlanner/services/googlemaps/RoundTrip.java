@@ -52,6 +52,11 @@ public class RoundTrip implements PlanRoundTrip{
 			modeofTransport = TravelMode.TRANSIT;
 	}
 	
+	
+	public DirectionsRoute[] getResult() {
+		return result.routes;
+	}
+	
 	@Override
 	public DirectionsRoute calcRoundTrip() throws Exception 
 	{
@@ -65,8 +70,6 @@ public class RoundTrip implements PlanRoundTrip{
 		
 		result = req.await();
 		this.result = result;
-		return result.routes[0];
-		
 	}
 	
 	@Override
