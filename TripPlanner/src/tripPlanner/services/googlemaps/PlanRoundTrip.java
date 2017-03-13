@@ -17,7 +17,7 @@ public interface PlanRoundTrip {
 	void setModeofTransport(String mode);
 	
 	
-	void calcRoundTrip() throws Exception;
+	boolean calcRoundTrip() throws Exception;
 
 	public DirectionsRoute[] getResult();
 

@@ -58,18 +58,19 @@ public class RoundTrip implements PlanRoundTrip{
 	}
 	
 	@Override
-	public void calcRoundTrip() throws Exception 
+	public boolean calcRoundTrip() throws Exception 
 	{
 		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
 		DirectionsApiRequest req =  DirectionsApi.getDirections(context, origin, origin);
 		DirectionsResult result = new DirectionsResult();
-		req.mode("driving");
+		req.mode(modeofTransport);
 		
 		req.optimizeWaypoints(true);
 		req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
 		
 		result = req.await();
 		this.result = result;
+		return true;
 	}
 	
 	@Override
