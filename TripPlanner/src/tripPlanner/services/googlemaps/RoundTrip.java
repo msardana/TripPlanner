@@ -1,6 +1,8 @@
-package com.tripplanner.googlemaps;
+package tripPlanner.services.googlemaps;
 
 import java.util.ArrayList;
+
+import tripPlanner.interfaces.PlanRoundTrip;
 
 import com.google.gson.Gson;
 import com.google.maps.DirectionsApi;

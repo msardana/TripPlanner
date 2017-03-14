@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tripplanner.googlemaps;
+package tripPlanner.interfaces;
 
 import com.google.maps.model.DirectionsRoute;
 

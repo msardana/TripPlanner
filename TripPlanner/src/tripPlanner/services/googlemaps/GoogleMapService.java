@@ -1,6 +1,9 @@
-package com.tripplanner.googlemaps;
+package tripPlanner.services.googlemaps;
 
 import java.util.ArrayList;
+
+import tripPlanner.interfaces.MapService;
+import tripPlanner.interfaces.PlanRoundTrip;
 
 public class GoogleMapService implements MapService {
 	

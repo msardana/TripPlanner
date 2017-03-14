@@ -1,4 +1,4 @@
-package com.tripplanner.googlemaps;
+package tripPlanner.interfaces;
 
 import java.util.ArrayList;
 
