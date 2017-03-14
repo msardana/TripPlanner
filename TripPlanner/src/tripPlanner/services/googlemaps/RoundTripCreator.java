@@ -2,7 +2,11 @@ package tripPlanner.services.googlemaps;
 
 import java.util.ArrayList;
 
-import tripPlanner.interfaces.PlanRoundTrip;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import tripPlanner.config.GoogleAPIKey;
+import tripPlanner.interfaces.PlanRoundTripInterface;
+import tripPlanner.models.GoogleDirections;
 
 import com.google.gson.Gson;
 import com.google.maps.DirectionsApi;
@@ -21,28 +25,35 @@ import com.google.maps.model.TravelMode;
  */
 
 
-public class RoundTrip implements PlanRoundTrip{
-
+public class RoundTripCreator implements PlanRoundTripInterface{
 	
+	@Autowired
+	GoogleAPIKey apiKey;
+
+	/*
 	private String origin;
 	private ArrayList<String> wayPoints;
 	private TravelMode modeofTransport=TravelMode.DRIVING;
 	private String API_KEY;
-	private DirectionsResult result=null;
+	private DirectionsResult result=null;*/
 	
 	
-	public RoundTrip(String orgin, ArrayList<String> wayPoints) {
+	public RoundTripCreator() {
+		super();
+	}
+
+/*	public RoundTripCreator(String orgin, ArrayList<String> wayPoints) {
 		super();
 		this.origin = orgin;
 		this.wayPoints = wayPoints;
-	}
+	}*/
 	
-	@Override
+/*	@Override
 	public void setAPI_KEY(String aPI_KEY) {
 		API_KEY = aPI_KEY;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void setModeofTransport(String mode) {
 		if(mode.equalsIgnoreCase("Driving") || mode.equalsIgnoreCase("Road") || mode.equalsIgnoreCase("Car") || mode.equalsIgnoreCase("Bike"))
 			modeofTransport = TravelMode.DRIVING;	
@@ -52,17 +63,17 @@ public class RoundTrip implements PlanRoundTrip{
 			modeofTransport = TravelMode.BICYCLING;
 		else
 			modeofTransport = TravelMode.TRANSIT;
-	}
+	}*/
 	
 	
-	public DirectionsRoute[] getResult() {
+	/*public DirectionsRoute[] getResult() {
 		return result.routes;
 	}
-	
+	*/
 	@Override
-	public boolean calcRoundTrip() throws Exception 
+	public GoogleDirections calcRoundTrip(String origin,ArrayList<String> wayPoints,TravelMode modeofTransport) throws Exception 
 	{
-		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
+		GeoApiContext context = new GeoApiContext().setApiKey(apiKey.getAPI_KEY());
 		DirectionsApiRequest req =  DirectionsApi.getDirections(context, origin, origin);
 		DirectionsResult result = new DirectionsResult();
 		req.mode(modeofTransport);
@@ -71,15 +82,16 @@ public class RoundTrip implements PlanRoundTrip{
 		req.waypoints(wayPoints.toArray(new String[wayPoints.size()]));
 		
 		result = req.await();
-		this.result = result;
-		return true;
+		GoogleDirections gd = new GoogleDirections();
+		gd.setResult(result);
+		return gd;
 	}
 	
 	@Override
-	public String getJson()
+	public String getJson(GoogleDirections gd)
 	{
 		Gson gson = new Gson();
-		String jsonString = gson.toJson(result);
+		String jsonString = gson.toJson(gd.getResult());
 		return jsonString;
 	}
 	

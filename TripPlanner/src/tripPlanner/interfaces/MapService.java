@@ -4,5 +4,5 @@ import java.util.ArrayList;
 
 public interface MapService {
 
-	PlanRoundTrip getService(String orgin, ArrayList<String> wayPoints);
+	PlanRoundTripInterface getService(String orgin, ArrayList<String> wayPoints);
 }
