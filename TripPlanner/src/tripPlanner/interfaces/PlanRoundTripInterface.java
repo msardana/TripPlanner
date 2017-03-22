@@ -26,9 +26,6 @@ public interface PlanRoundTripInterface {
 
 	//public DirectionsRoute[] getResult();
 
-	public String getJson(GoogleDirections gd);
-
-
 	GoogleDirections calcRoundTrip(String origin, ArrayList<String> wayPoints,
 			TravelMode modeofTransport) throws Exception;
 }

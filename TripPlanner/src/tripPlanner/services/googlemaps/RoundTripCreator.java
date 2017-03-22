@@ -87,12 +87,5 @@ public class RoundTripCreator implements PlanRoundTripInterface{
 		return gd;
 	}
 	
-	@Override
-	public String getJson(GoogleDirections gd)
-	{
-		Gson gson = new Gson();
-		String jsonString = gson.toJson(gd.getResult());
-		return jsonString;
-	}
 	
 }
