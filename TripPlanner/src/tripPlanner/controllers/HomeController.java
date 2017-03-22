@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.maps.model.TravelMode;
-import com.kirankn.studentadmissioncontroller.Student;
 
 import tripPlanner.interfaces.MapService;
 import tripPlanner.interfaces.PlanRoundTripInterface;
