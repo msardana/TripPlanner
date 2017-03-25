@@ -17,7 +17,7 @@ import tripPlanner.models.GoogleDirections;
 @RestController
 public class HomeController {
  
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/")
     public String index() {
         return "index.html";
     }
@@ -38,8 +38,14 @@ public class HomeController {
     } */
     
     
+    @RequestMapping(value = "/loadmap")
+    public String loadmap() {
+        return "directions.html";
+    }
+    
+    
     /*temporary mapping*/
-    @RequestMapping(value="/")
+    @RequestMapping(value="/directions")
     public DirectionsResult mapsdata() throws Exception 
     {
     	String origin = "Bangalore";
