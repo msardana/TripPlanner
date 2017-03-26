@@ -3,7 +3,7 @@ package tripPlanner.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.services.citydecider.VisitingCities;
 import tripPlanner.services.googlemaps.RoundTripCreator;
 
@@ -18,7 +18,7 @@ public class BeanConfig {
 	
 	
 	@Bean
-	VisitingCities getvisitingcities()
+	CityVisitingInterface getVisitingCities()
 	{
 		return new VisitingCities();
 	}
@@ -27,6 +27,5 @@ public class BeanConfig {
     GoogleAPIKey getGoogleAPIKey()
     {
     	return new GoogleAPIKey(System.getenv("GOOGLE_API_KEY"));
-    	
     }
 }
