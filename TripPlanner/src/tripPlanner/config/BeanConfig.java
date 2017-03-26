@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import tripPlanner.interfaces.KnapsackInterface;
 import tripPlanner.services.citydecider.FractionalKnapsack;
+import tripPlanner.services.citydecider.VisitingCities;
 import tripPlanner.services.citydecider.ZeroOneKnapsack;
 import tripPlanner.services.googlemaps.RoundTripCreator;
 
@@ -17,18 +18,11 @@ public class BeanConfig {
 		return new RoundTripCreator();
 	}
 	
+	
 	@Bean
-	ZeroOneKnapsack get_zero_oneknapsack()
+	VisitingCities getvisitingcities()
 	{
-		return new ZeroOneKnapsack();
-		
-	}
-
-	@Bean
-	FractionalKnapsack get_fractional_oneknapsack()
-	{
-		return new FractionalKnapsack();
-		
+		return new VisitingCities();
 	}
 	
     @Bean
