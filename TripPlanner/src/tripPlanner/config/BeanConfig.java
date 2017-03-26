@@ -13,6 +13,8 @@ public class BeanConfig {
 	{
 		return new RoundTripCreator();
 	}
+	
+	
 
     @Bean
     GoogleAPIKey getGoogleAPIKey()
