@@ -1,6 +1,6 @@
 package tripPlanner.models;
 
-public class CityVisitingOrder {
+public class CitytoVisit {
 
 	private double order[];
 

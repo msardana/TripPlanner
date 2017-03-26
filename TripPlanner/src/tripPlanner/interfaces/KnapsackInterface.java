@@ -1,9 +1,9 @@
 package tripPlanner.interfaces;
 
-import tripPlanner.models.CityVisitingOrder;
+import tripPlanner.models.CitytoVisit;
 
 public interface KnapsackInterface {
 
 	
-	public CityVisitingOrder optimize(int[] weight,int[] profit,int W);
+	public CitytoVisit optimize(int[] weight,int[] profit,int W);
 }

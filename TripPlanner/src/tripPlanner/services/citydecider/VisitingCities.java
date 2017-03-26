@@ -24,11 +24,3 @@ public class VisitingCities implements CityVisitingInterface {
 
 
 	
-
-	
-	
-	
-	
-	
-	
-}
