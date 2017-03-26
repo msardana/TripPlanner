@@ -1,6 +1,6 @@
 package tripPlanner.interfaces;
 
-public interface CityRankingInterface {
+public interface CityVisitingInterface {
 
 
 	KnapsackInterface get_zero_oneknapsack();

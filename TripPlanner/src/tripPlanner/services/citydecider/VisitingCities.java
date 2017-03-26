@@ -1,9 +1,9 @@
 package tripPlanner.services.citydecider;
 
-import tripPlanner.interfaces.CityRankingInterface;
+import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.interfaces.KnapsackInterface;
 
-public class RankingCities implements CityRankingInterface {
+public class VisitingCities implements CityVisitingInterface {
 
 	
 	
