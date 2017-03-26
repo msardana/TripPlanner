@@ -38,13 +38,15 @@ public class HomeController {
     } */
     
     
+    
+    /*temporary mapping*/
     @RequestMapping(value = "/loadmap")
     public String loadmap() {
         return "directions.html";
     }
     
     
-    /*temporary mapping*/
+    
     @RequestMapping(value="/directions")
     public DirectionsResult mapsdata() throws Exception 
     {

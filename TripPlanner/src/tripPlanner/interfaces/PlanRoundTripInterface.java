@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tripPlanner.interfaces;
 
 import java.util.ArrayList;
@@ -10,10 +7,6 @@ import tripPlanner.models.GoogleDirections;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.TravelMode;
 
-/**
- * @author kirankn
- *
- */
 public interface PlanRoundTripInterface {
 //
 	//void setAPI_KEY(String aPI_KEY);
