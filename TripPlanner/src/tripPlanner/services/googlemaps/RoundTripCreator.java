@@ -29,47 +29,13 @@ public class RoundTripCreator implements PlanRoundTripInterface{
 	
 	@Autowired
 	GoogleAPIKey apiKey;
-
-	/*
-	private String origin;
-	private ArrayList<String> wayPoints;
-	private TravelMode modeofTransport=TravelMode.DRIVING;
-	private String API_KEY;
-	private DirectionsResult result=null;*/
 	
 	
 	public RoundTripCreator() {
 		super();
 	}
 
-/*	public RoundTripCreator(String orgin, ArrayList<String> wayPoints) {
-		super();
-		this.origin = orgin;
-		this.wayPoints = wayPoints;
-	}*/
-	
-/*	@Override
-	public void setAPI_KEY(String aPI_KEY) {
-		API_KEY = aPI_KEY;
-	}*/
 
-	/*@Override
-	public void setModeofTransport(String mode) {
-		if(mode.equalsIgnoreCase("Driving") || mode.equalsIgnoreCase("Road") || mode.equalsIgnoreCase("Car") || mode.equalsIgnoreCase("Bike"))
-			modeofTransport = TravelMode.DRIVING;	
-		else if(mode.equalsIgnoreCase("walking"))
-			modeofTransport = TravelMode.WALKING;
-		else if(mode.equalsIgnoreCase("bicycling") || mode.equalsIgnoreCase("bicycle") || mode.equalsIgnoreCase("cycle"))
-			modeofTransport = TravelMode.BICYCLING;
-		else
-			modeofTransport = TravelMode.TRANSIT;
-	}*/
-	
-	
-	/*public DirectionsRoute[] getResult() {
-		return result.routes;
-	}
-	*/
 	@Override
 	public GoogleDirections calcRoundTrip(String origin,ArrayList<String> wayPoints,TravelMode modeofTransport) throws Exception 
 	{
@@ -87,12 +53,5 @@ public class RoundTripCreator implements PlanRoundTripInterface{
 		return gd;
 	}
 	
-	@Override
-	public String getJson(GoogleDirections gd)
-	{
-		Gson gson = new Gson();
-		String jsonString = gson.toJson(gd.getResult());
-		return jsonString;
-	}
 	
 }

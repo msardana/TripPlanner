@@ -1,0 +1,5 @@
+package tripPlanner.models;
+
+public enum TripCategory {
+	RELIGIOUS, HISTORICAL, ADVENTUROUS,RELAXATION,COVERAGE,PHOTOGRAPHY,BIRDWATCHING
+}
