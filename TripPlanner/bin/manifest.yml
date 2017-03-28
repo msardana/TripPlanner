@@ -1,8 +1,0 @@
----
-applications:
-- name: mytripbook
-  memory: 512M
-  host: mytripbook
-  domain: mybluemix.net
-  path: TripPlanner-0.0.1-SNAPSHOT.war
-  buildpack: liberty-for-java
