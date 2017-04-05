@@ -22,7 +22,7 @@ import tripPlanner.models.GoogleDirections;
 @Controller
 public class HomeController {
  
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/home" , method = RequestMethod.GET)
     public ModelAndView  index(ModelAndView model, HttpServletRequest req, HttpServletResponse res) {
     	model.setViewName("index");
     	return model;
@@ -47,8 +47,9 @@ public class HomeController {
     
     /*temporary mapping*/
     @RequestMapping(value = "/loadmap")
-    public String loadmap() {
-        return "directions.html";
+    public ModelAndView loadmap(ModelAndView model, HttpServletRequest req, HttpServletResponse res) {
+    	model.setViewName("directions");
+    	return model;
     }
     
     

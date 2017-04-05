@@ -1,12 +1,8 @@
 package tripPlanner.core;
 
-
-
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import tripPlanner.config.BeanConfig;
-
-
 
 
 
@@ -20,7 +16,7 @@ protected Class<?>[] getRootConfigClasses() {
 
 @Override
 protected Class<?>[] getServletConfigClasses() {
-    return null;
+    return new Class<?>[] { };
 }
 
 @Override

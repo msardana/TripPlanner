@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -12,8 +13,9 @@ import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.services.citydecider.VisitingCities;
 import tripPlanner.services.googlemaps.RoundTripCreator;
 
-@Configuration
+
 @EnableWebMvc
+@Configuration
 @ComponentScan({ "tripPlanner.*" })
 public class BeanConfig extends WebMvcConfigurerAdapter {
 
@@ -43,4 +45,10 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
           resolver.setSuffix(".jsp");
           return resolver;
     }
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+          registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+
 }
