@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +23,9 @@ import tripPlanner.models.GoogleDirections;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	PlanRoundTripInterface roundTrip;
  
     @RequestMapping(value = "/home" , method = RequestMethod.GET)
     public ModelAndView  index(ModelAndView model, HttpServletRequest req, HttpServletResponse res) {
@@ -55,7 +60,7 @@ public class HomeController {
     
     
     @RequestMapping(value="/directions")
-    public DirectionsResult mapsdata() throws Exception 
+    public @ResponseBody DirectionsResult mapsdata() throws Exception 
     {
     	String origin = "Bangalore";
     	ArrayList<String> waypoints = new ArrayList<String>();		
@@ -63,10 +68,12 @@ public class HomeController {
     	waypoints.add("Andhra Pradesh");
     	waypoints.add("Telangana");
     	waypoints.add("Goa");
-    	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfig.class);
-    	PlanRoundTripInterface pt = ctx.getBean(PlanRoundTripInterface.class);
-    	ctx.close();
-    	return pt.calcRoundTrip(origin, waypoints, TravelMode.DRIVING).getResult();
+    //	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfig.class);
+    //	PlanRoundTripInterface pt = ctx.getBean(PlanRoundTripInterface.class);
+    //	ctx.close();
+    	DirectionsResult directions= roundTrip.calcRoundTrip(origin, waypoints, TravelMode.DRIVING).getResult();
+    	System.out.println(directions.routes[0].legs[0].endAddress);
+    	return directions;
     	
     }
     
