@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import tripPlanner.models.GoogleDirections;
 
-import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.TravelMode;
 
 public interface PlanRoundTripInterface {

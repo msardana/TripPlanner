@@ -2,6 +2,7 @@ package tripPlanner.models;
 
 public class Preferences {
 
+	/*
 	TripCategory category;
 	Cities Lockdown[];
 	
@@ -17,6 +18,6 @@ public class Preferences {
 	public void setLockdown(Cities[] lockdown) {
 		Lockdown = lockdown;
 	}
-	
+	*/
 	
 }
