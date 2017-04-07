@@ -19,6 +19,7 @@ import com.google.maps.model.TravelMode;
 
 import tripPlanner.config.BeanConfig;
 import tripPlanner.interfaces.PlanRoundTripInterface;
+import tripPlanner.models.Cities;
 import tripPlanner.models.GoogleDirections;
 
 @Controller
@@ -75,6 +76,16 @@ public class HomeController {
     	System.out.println(directions.routes[0].legs[0].endAddress);
     	return directions;
     	
+    }
+    
+    @RequestMapping(value="/cities")
+    public @ResponseBody Cities[] getCitiesForState(ModelAndView model, HttpServletRequest req, HttpServletResponse res) throws Exception 
+    {
+     String state = req.getParameter("state");
+     
+     
+     return null;
+     
     }
     
 }
