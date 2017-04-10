@@ -2,7 +2,7 @@ package tripPlanner.daos;
 
 import javax.sql.DataSource;
 
-import tripPlanner.models.Cities;
+import tripPlanner.models.City;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -14,7 +14,7 @@ public class inputHelperDaOImpl implements inputHelperDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 	@Override
-	public Cities[] getCitiesForState(int stateid) {
+	public City[] getCitiesForState(int stateid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

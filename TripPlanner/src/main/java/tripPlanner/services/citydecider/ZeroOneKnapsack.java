@@ -7,7 +7,6 @@ public class ZeroOneKnapsack implements KnapsackInterface {
 
 	public ZeroOneKnapsack() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

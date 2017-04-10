@@ -8,12 +8,10 @@ import tripPlanner.config.GoogleAPIKey;
 import tripPlanner.interfaces.PlanRoundTripInterface;
 import tripPlanner.models.GoogleDirections;
 
-import com.google.gson.Gson;
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.TravelMode;
 
 
