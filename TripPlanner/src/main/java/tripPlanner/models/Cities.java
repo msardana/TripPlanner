@@ -1,6 +1,6 @@
 package tripPlanner.models;
 
-public class City {
+public class Cities {
 
 	private Integer cityId;
 	private String cityname;

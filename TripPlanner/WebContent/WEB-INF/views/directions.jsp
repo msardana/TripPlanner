@@ -7,8 +7,8 @@
 </head>
 <body>
 	
-	<div id="map" style="float:left;width:70%; height:100%"></div>
-	<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+	<div id="map" style="width:100%;height:400px;"></div>
+	<!-- <div id="directionsPanel" style="float:right;width:30%;height 100%"></div> -->
 
 
 	<script async defer
@@ -29,11 +29,14 @@
 	    draggable: true,
 	    map: map
 	  });
+	   var directionsService = new google.maps.DirectionsService();
 
+        directionsDisplay.setMap(map);
+      //  directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
 		  $.ajax({
 		    //url: 'http://localhost:8080/spring-mvc-file-upload/rest/cont/upload',
-		    url : contextPath+"/"+"directions",
+		    url : contextPath+"/"+"cities?state=20",
 		    contentType: 'JSON',
 		    type: 'GET',
 		    success: function(data){
@@ -43,9 +46,24 @@
 	    	result =  data;
 	    	alert(result);
 	    	console.log(typeof result);
-	        directionsDisplay.setDirections(result);
+	    	
+	   //    directionsDisplay.setDirections(result)
 		    }
-		  });
+		  }); 
+
+  
+        var request = {
+            origin: 'DELHI',
+            destination: 'KHAJURAHO',
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+            if(status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            }
+        });
+    
+   
 
 
 	/* 	var xhttp = new XMLHttpRequest();
