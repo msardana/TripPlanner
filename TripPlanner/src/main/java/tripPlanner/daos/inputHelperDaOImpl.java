@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class inputHelperDaOImpl implements inputHelperDao {
 
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate  jdbcTemplate;
 	 
     public inputHelperDaOImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
