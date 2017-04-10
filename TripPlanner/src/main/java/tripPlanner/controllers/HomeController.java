@@ -58,12 +58,13 @@ public class HomeController {
     @RequestMapping(value="/directions")
     public @ResponseBody DirectionsResult mapsdata() throws Exception 
     {
-    	String origin = "Bangalore";
+    	String origin = "Delhi";
     	ArrayList<String> waypoints = new ArrayList<String>();		
-    	waypoints.add("Mysore");
-    	waypoints.add("Andhra Pradesh");
-    	waypoints.add("Telangana");
-    	waypoints.add("Goa");
+    	waypoints.add("Gwalior");
+    	waypoints.add("Sanchi");
+    	waypoints.add("Pachmarhi");
+    	waypoints.add("Jabalpur");
+    	waypoints.add("Khajuraho");
     //	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfig.class);
     //	PlanRoundTripInterface pt = ctx.getBean(PlanRoundTripInterface.class);
     //	ctx.close();

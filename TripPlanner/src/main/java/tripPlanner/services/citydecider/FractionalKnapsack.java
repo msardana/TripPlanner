@@ -9,7 +9,6 @@ public class FractionalKnapsack implements KnapsackInterface {
 	
 	public FractionalKnapsack() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -28,7 +27,6 @@ public class FractionalKnapsack implements KnapsackInterface {
 	
 	@Override
 	public CitytoVisit optimize(int[] weight, int[] profit, int W) {
-		// TODO Auto-generated method stub
 		double cW = 0; //current weight
         int n = weight.length;
         double rank[]=new double[n];

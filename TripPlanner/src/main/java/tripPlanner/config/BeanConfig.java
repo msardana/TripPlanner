@@ -1,15 +1,19 @@
 package tripPlanner.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import tripPlanner.interfaces.CityVisitingInterface;
+import tripPlanner.daos.CityDAOImpl;
+import tripPlanner.interfaces.CityDAO;
 import tripPlanner.services.citydecider.VisitingCities;
 import tripPlanner.services.googlemaps.RoundTripCreator;
 
@@ -27,7 +31,7 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
 	
 	
 	@Bean
-	CityVisitingInterface getVisitingCities()
+	VisitingCities getVisitingCities()
 	{
 		return new VisitingCities();
 	}
@@ -51,4 +55,21 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
           registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
+    /*
+    @Bean
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("");  				database URL
+        dataSource.setUsername("root");			database Username
+        dataSource.setPassword("P@ssw0rd");	    database Password
+         
+        return dataSource;
+    }
+    
+    @Bean
+    public CityDAO getCityDAO() {
+        return new CityDAOImpl(getDataSource());
+    }*/
+    
 }

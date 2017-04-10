@@ -2,7 +2,7 @@ package tripPlanner.models;
 
 public class City {
 
-	private Integer  cityid;
+	private Integer cityId;
 	private String cityname;
 	private String citycoordinates;
 	private Integer coveragemindays;
@@ -11,13 +11,12 @@ public class City {
 	private Integer score;
 	
 	
-	
-	public Integer getCityid() {
-		return cityid;
+	public Integer getCityId() {
+		return cityId;
 	}
-	public void setCityid(Integer cityid) {
-		this.cityid = cityid;
-	}
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}	
 	public String getCityname() {
 		return cityname;
 	}
