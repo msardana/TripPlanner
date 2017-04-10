@@ -19,7 +19,7 @@ import com.google.maps.model.TravelMode;
 
 import tripPlanner.config.BeanConfig;
 import tripPlanner.interfaces.PlanRoundTripInterface;
-import tripPlanner.models.Cities;
+import tripPlanner.models.City;
 import tripPlanner.models.GoogleDirections;
 
 @Controller
@@ -79,7 +79,7 @@ public class HomeController {
     }
     
     @RequestMapping(value="/cities")
-    public @ResponseBody Cities[] getCitiesForState(ModelAndView model, HttpServletRequest req, HttpServletResponse res) throws Exception 
+    public @ResponseBody City[] getCitiesForState(ModelAndView model, HttpServletRequest req, HttpServletResponse res) throws Exception 
     {
      String state = req.getParameter("state");
      

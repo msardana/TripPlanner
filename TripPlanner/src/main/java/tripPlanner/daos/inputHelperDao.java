@@ -1,11 +1,11 @@
 package tripPlanner.daos;
 
-import tripPlanner.models.Cities;
+import tripPlanner.models.City;
 
 public interface inputHelperDao {
 
 	
 	
-	Cities[] getCitiesForState(int stateid);
+	City[] getCitiesForState(int stateid);
 	
 }
