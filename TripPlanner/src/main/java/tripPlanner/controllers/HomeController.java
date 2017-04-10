@@ -6,16 +6,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
 
+import tripPlanner.config.BeanConfig;
 import tripPlanner.interfaces.PlanRoundTripInterface;
+import tripPlanner.models.Cities;
+import tripPlanner.models.GoogleDirections;
 
 @Controller
 public class HomeController {
@@ -58,13 +63,12 @@ public class HomeController {
     @RequestMapping(value="/directions")
     public @ResponseBody DirectionsResult mapsdata() throws Exception 
     {
-    	String origin = "Delhi";
+    	String origin = "Bangalore";
     	ArrayList<String> waypoints = new ArrayList<String>();		
-    	waypoints.add("Gwalior");
-    	waypoints.add("Sanchi");
-    	waypoints.add("Pachmarhi");
-    	waypoints.add("Jabalpur");
-    	waypoints.add("Khajuraho");
+    	waypoints.add("Mysore");
+    	waypoints.add("Andhra Pradesh");
+    	waypoints.add("Telangana");
+    	waypoints.add("Goa");
     //	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfig.class);
     //	PlanRoundTripInterface pt = ctx.getBean(PlanRoundTripInterface.class);
     //	ctx.close();
@@ -72,6 +76,16 @@ public class HomeController {
     	System.out.println(directions.routes[0].legs[0].endAddress);
     	return directions;
     	
+    }
+    
+    @RequestMapping(value="/cities")
+    public @ResponseBody Cities[] getCitiesForState(ModelAndView model, HttpServletRequest req, HttpServletResponse res) throws Exception 
+    {
+     String state = req.getParameter("state");
+     
+     
+     return null;
+     
     }
     
 }

@@ -1,19 +1,21 @@
 package tripPlanner.config;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import tripPlanner.daos.CityDAOImpl;
-import tripPlanner.interfaces.CityDAO;
+import tripPlanner.daos.inputHelperDaOImpl;
+import tripPlanner.daos.inputHelperDao;
+import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.services.citydecider.VisitingCities;
 import tripPlanner.services.googlemaps.RoundTripCreator;
 
@@ -23,6 +25,54 @@ import tripPlanner.services.googlemaps.RoundTripCreator;
 @ComponentScan({ "tripPlanner.*" })
 public class BeanConfig extends WebMvcConfigurerAdapter {
 
+	
+	
+	@Bean
+	public DataSource getDataSource()   {
+		String nonVCAPLocalRemoteFlag = "Development"; // "Development"; //Test;
+	
+		//log.info("SX_DB_USED: " + SX_DB_USED);
+		//System.out.println("SX_DB_USED: " + SX_DB_USED);
+		//log.info("VCAP_SERVICES content: " + VCAP_SERVICES);
+		
+       String 	SX_DB_USED = "dashDB-Development";
+       
+       
+			//log.info("VCAP_SERVICES is null hence Initializing by hard coding");
+			if(nonVCAPLocalRemoteFlag.equalsIgnoreCase("Development")){
+				System.out.println("dashDB-Development Called!!");
+			    SX_DB_USED = "dashDB_TripBook-Development"; 
+			} else if(nonVCAPLocalRemoteFlag.equalsIgnoreCase("test")){
+				System.out.println("DashDB-Test Called");
+			    SX_DB_USED = "dashDB_Tripbook-test";
+			}
+			else {
+				// mostly used by developers
+			    SX_DB_USED = "dashDB_TripBook-Development";
+			}
+		
+	
+		
+		//log.info(" SX_DB_USED " + SX_DB_USED);
+	    DataSource dataSource = null;
+	    JndiTemplate jndi = new JndiTemplate();
+        try {
+        	dataSource = (DataSource) jndi.lookup("jdbc/" + SX_DB_USED);
+        } catch (NamingException e) {
+        	e.printStackTrace();
+        	//log.info("Error in JNDI Lookup for getDataSource for service: " + SX_DB_USED );
+        //	throw new AppException(IException.KEY_JNDIEXCEPTION);
+        } 
+		
+        return dataSource;
+	}
+	
+	@Bean
+	public inputHelperDao getInputHelperDao()  {
+		return new inputHelperDaOImpl(getDataSource());
+	}
+	
+	
 	@Bean
 	RoundTripCreator getRoundTripCreator()
 	{
@@ -31,7 +81,7 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
 	
 	
 	@Bean
-	VisitingCities getVisitingCities()
+	CityVisitingInterface getVisitingCities()
 	{
 		return new VisitingCities();
 	}
@@ -55,21 +105,4 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
           registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-    /*
-    @Bean
-    public DataSource getDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("");  				database URL
-        dataSource.setUsername("root");			database Username
-        dataSource.setPassword("P@ssw0rd");	    database Password
-         
-        return dataSource;
-    }
-    
-    @Bean
-    public CityDAO getCityDAO() {
-        return new CityDAOImpl(getDataSource());
-    }*/
-    
 }
