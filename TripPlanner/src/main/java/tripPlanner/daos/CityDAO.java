@@ -12,5 +12,7 @@ public interface CityDAO {
     
     public City getCity(int cityId);
      
-    public List<City> listAllCity();
+    public List<City> listAllCities(int stateid);
+    
+    public List<City> getCoverageMeasure(int totladays, int stateid);
 }

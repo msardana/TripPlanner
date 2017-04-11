@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import tripPlanner.daos.CityDAO;
+import tripPlanner.daos.CityDAOImpl;
 import tripPlanner.daos.inputHelperDaOImpl;
 import tripPlanner.daos.inputHelperDao;
 import tripPlanner.interfaces.CityVisitingInterface;
@@ -70,6 +72,12 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public inputHelperDao getInputHelperDao()  {
 		return new inputHelperDaOImpl(getDataSource());
+	}
+	
+	
+	@Bean
+	public CityDAO getCityDao()  {
+		return new CityDAOImpl(getDataSource());
 	}
 	
 	
