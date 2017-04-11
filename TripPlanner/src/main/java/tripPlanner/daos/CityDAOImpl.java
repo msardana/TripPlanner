@@ -18,23 +18,23 @@ import tripPlanner.models.City;
 
 public class CityDAOImpl implements CityDAO {
 
-	private JdbcTemplate jdbcTemplateObject;
+	private JdbcTemplate jdbcTemplate;
 
 	public CityDAOImpl(DataSource dataSource) {
-	    this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+	    this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
 	public void addCity(City city) {
 		String sql = "INSERT INTO city (CITYNAME,CITYCOORDINATES,COVERAGEMINDAYS,COVERAGEMAXDAYS,STATEID,SCORE)"
                 + " VALUES (?, ?, ?, ?, ?, ?)";
-		jdbcTemplateObject.update(sql, city.getCityname(),city.getCitycoordinates(),city.getCoveragemindays(),city.getCoveragemaxdays(),city.getStateid(),city.getScore());
+		jdbcTemplate.update(sql, city.getCityname(),city.getCitycoordinates(),city.getCoveragemindays(),city.getCoveragemaxdays(),city.getStateid(),city.getScore());
 	}
 
 	@Override
 	public void deleteCity(int cityId) {
 		String sql = "DELETE FROM City WHERE cityid=?";
-		jdbcTemplateObject.update(sql, cityId);		
+		jdbcTemplate.update(sql, cityId);		
 	}
 
 
@@ -62,7 +62,7 @@ public class CityDAOImpl implements CityDAO {
 	@Override
 	public City getCity(int cityId) {
 	    String sql = "SELECT * FROM City WHERE cityId=" + cityId;
-	    return jdbcTemplateObject.query(sql, new CityMapExtractor());
+	    return jdbcTemplate.query(sql, new CityMapExtractor());
 	}
 	
 	
@@ -88,14 +88,14 @@ public class CityDAOImpl implements CityDAO {
 	@Override
 	public List<City> listAllCities(int stateid) {
 		String sql = "SELECT * FROM city where stateid="+stateid;
-		List<City> listCity = jdbcTemplateObject.query(sql, new AllCityMapExtractor());
+		List<City> listCity = jdbcTemplate.query(sql, new AllCityMapExtractor());
 		return listCity;
 	}
 
 	@Override
 	public List<City> getCoverageMeasure(final int totaldays,final int stateid) {
 		String sql = "select CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,STATEID,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
-		List<City> listCity = jdbcTemplateObject.query(sql, 
+		List<City> listCity = jdbcTemplate.query(sql, 
 				new PreparedStatementSetter() {
 						public void setValues(PreparedStatement preparedStatement) throws SQLException {
 							preparedStatement.setInt(1, totaldays);
