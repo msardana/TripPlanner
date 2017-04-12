@@ -9,8 +9,14 @@ public class City {
 	private Integer coveragemaxdays;
 	private Integer stateid;
 	private Integer score;
+	private float coverage;
 	
-	
+	public float getCoverage() {
+		return coverage;
+	}
+	public void setCoverage(float coverage) {
+		this.coverage = coverage;
+	}
 	public Integer getCityId() {
 		return cityId;
 	}

@@ -1,7 +1,6 @@
 package tripPlanner.services.citydecider;
 
 import tripPlanner.interfaces.KnapsackInterface;
-import tripPlanner.models.CitytoVisit;
 
 public class FractionalKnapsack implements KnapsackInterface {
 
@@ -26,7 +25,7 @@ public class FractionalKnapsack implements KnapsackInterface {
 	
 	
 	@Override
-	public CitytoVisit optimize(int[] weight, int[] profit, int W) {
+	public double[] optimize(int[] weight, int[] profit, int W) {
 		double cW = 0; //current weight
         int n = weight.length;
         double rank[]=new double[n];
@@ -53,9 +52,7 @@ public class FractionalKnapsack implements KnapsackInterface {
                 break;  //the knapsack is full
             }
         }
-        
-        CitytoVisit cvd = new CitytoVisit();
-		cvd.setOrder(solution);
-		return cvd;
+
+		return solution;
 	}        
 }

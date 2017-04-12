@@ -85,6 +85,24 @@ public class CityDAOImpl implements CityDAO {
 	}
 	
 	
+	private static final class CityMeasureExtractor implements RowMapper<City> {
+		@Override
+		public City mapRow(ResultSet rs, int rowNum) throws SQLException {
+				
+				City city = new City();
+	
+				city.setCityId(rs.getInt("CITYID"));
+		        city.setCityname(rs.getString("CITYNAME"));
+		        city.setCitycoordinates(rs.getString("CITYCOORDINATES"));
+		        city.setCoverage(rs.getFloat("COVERAGE"));
+		        city.setScore(rs.getInt("SCORE"));
+		        
+		        
+		        return city;
+			}
+	}
+	
+	
 	@Override
 	public List<City> listAllCities(int stateid) {
 		String sql = "SELECT * FROM city where stateid="+stateid;
@@ -94,7 +112,7 @@ public class CityDAOImpl implements CityDAO {
 
 	@Override
 	public List<City> getCoverageMeasure(final int totaldays,final int stateid) {
-		String sql = "select CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,STATEID,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
+		String sql = "select CITYID,CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
 		List<City> listCity = jdbcTemplate.query(sql, 
 				new PreparedStatementSetter() {
 						public void setValues(PreparedStatement preparedStatement) throws SQLException {
@@ -102,7 +120,7 @@ public class CityDAOImpl implements CityDAO {
 							preparedStatement.setInt(2, stateid);
 						}
         		},
-				new AllCityMapExtractor());
+				new CityMeasureExtractor());
 		return listCity;
 	}
 

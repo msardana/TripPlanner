@@ -1,7 +1,6 @@
 package tripPlanner.services.citydecider;
 
 import tripPlanner.interfaces.KnapsackInterface;
-import tripPlanner.models.CitytoVisit;
 
 public class ZeroOneKnapsack implements KnapsackInterface {
 
@@ -10,7 +9,7 @@ public class ZeroOneKnapsack implements KnapsackInterface {
 	}
 
 	@Override
-	public CitytoVisit optimize(int[] weight, int[] profit, int W) {
+	public double[] optimize(int[] weight, int[] profit, int W) {
 		int k,w,i;
 		int n = weight.length;
 		int[] B = new int[W+1];
@@ -36,9 +35,7 @@ public class ZeroOneKnapsack implements KnapsackInterface {
 				k=k-weight[i];
 			}
 		}
-		CitytoVisit cvd = new CitytoVisit();
-		cvd.setOrder(solution);
-		return cvd;
+		return solution;
 	}
 
 }
