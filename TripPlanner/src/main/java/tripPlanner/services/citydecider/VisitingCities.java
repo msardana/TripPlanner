@@ -10,28 +10,8 @@ import tripPlanner.models.City;
 
 public class VisitingCities implements CityVisitingInterface {
 
-	
-	
 	private int days_incities[];
 	private int priority_scores[];
-
-
-
-
-	@Override
-	public KnapsackInterface get_zero_oneknapsack() {
-		return new ZeroOneKnapsack();
-	}
-	
-	
-	@Override
-	public KnapsackInterface get_fractionalknapsack() {
-		
-		return new FractionalKnapsack();
-	}
-
-
-
 
 	@Override
 	public List<City> getCitiestoVisit(List<City> cities,int totaldays) {
@@ -43,7 +23,7 @@ public class VisitingCities implements CityVisitingInterface {
 			priority_scores[i] = c.getScore();	
 			i++;
 		}
-		KnapsackInterface k = new FractionalKnapsack();
+		KnapsackInterface k = new ZeroOneKnapsack();
 		double visit[] = k.optimize(days_incities, priority_scores, totaldays);
 		iter = cities.iterator();
 		i=0;
