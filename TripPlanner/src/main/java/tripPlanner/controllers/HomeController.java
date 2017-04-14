@@ -1,11 +1,13 @@
 package tripPlanner.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,13 @@ import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
 
 import tripPlanner.config.BeanConfig;
+import tripPlanner.daos.CityDAO;
+import tripPlanner.daos.CityDAOImpl;
+import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.interfaces.PlanRoundTripInterface;
 import tripPlanner.models.City;
 import tripPlanner.models.GoogleDirections;
+import tripPlanner.services.citydecider.VisitingCities;
 
 @Controller
 public class HomeController {
@@ -28,6 +34,12 @@ public class HomeController {
 	@Autowired
 	PlanRoundTripInterface roundTrip;
  
+	@Autowired
+	CityDAO cd;
+	
+	@Autowired
+	CityVisitingInterface v;
+	
     @RequestMapping(value = "/home" , method = RequestMethod.GET)
     public ModelAndView  index(ModelAndView model, HttpServletRequest req, HttpServletResponse res) {
     	model.setViewName("index");
@@ -87,5 +99,13 @@ public class HomeController {
      return null;
      
     }
+    
+    @RequestMapping(value="/check")
+    public @ResponseBody void check() throws Exception 
+    {
+        List<City>cities = v.getCitiestoVisit(cd.getCoverageMeasure(10, 20), 10);
+        System.out.println(cities);
+    }
+    
     
 }

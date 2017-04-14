@@ -82,14 +82,14 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
 	
 	
 	@Bean
-	RoundTripCreator getRoundTripCreator()
+	public RoundTripCreator getRoundTripCreator()
 	{
 		return new RoundTripCreator();
 	}
 	
 	
 	@Bean
-	CityVisitingInterface getVisitingCities()
+	public CityVisitingInterface getVisitingCities()
 	{
 		return new VisitingCities();
 	}
