@@ -11,10 +11,10 @@ public class FractionalKnapsack implements KnapsackInterface {
 	}
 
 
-	private int getNext(double rank[]) {
+	private Integer getNext(double rank[]) {
         double highest = 0;
-        int index = -1;
-        for (int i = 0; i < rank.length; ++i) {
+        Integer index = -1;
+        for (Integer i = 0; i < rank.length; ++i) {
             if (rank[i] > highest) {
                 highest = rank[i];
                 index = i;

@@ -4,5 +4,5 @@ package tripPlanner.interfaces;
 public interface KnapsackInterface {
 
 	
-	public double[] optimize(int[] weight,int[] profit,int W);
+	public double[] optimize(int[] days_incities,int[] priority_scores,int W);
 }
