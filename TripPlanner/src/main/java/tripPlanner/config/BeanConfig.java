@@ -26,8 +26,6 @@ import tripPlanner.services.googlemaps.RoundTripCreator;
 @Configuration
 @ComponentScan({ "tripPlanner.*" })
 public class BeanConfig extends WebMvcConfigurerAdapter {
-
-	
 	
 	@Bean
 	public DataSource getDataSource()   {
@@ -73,7 +71,6 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
 	public inputHelperDao getInputHelperDao()  {
 		return new inputHelperDaOImpl(getDataSource());
 	}
-	
 	
 	@Bean
 	public CityDAO getCityDao()  {

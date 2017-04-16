@@ -20,10 +20,15 @@ public class CityDAOImpl implements CityDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
+	
 	public CityDAOImpl(DataSource dataSource) {
 	    this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	
+	/**
+	 * Add a city to the database with City model as its argument
+	*/
 	@Override
 	public void addCity(City city) {
 		String sql = "INSERT INTO city (CITYNAME,CITYCOORDINATES,COVERAGEMINDAYS,COVERAGEMAXDAYS,STATEID,SCORE)"
@@ -31,13 +36,61 @@ public class CityDAOImpl implements CityDAO {
 		jdbcTemplate.update(sql, city.getCityname(),city.getCitycoordinates(),city.getCoveragemindays(),city.getCoveragemaxdays(),city.getStateid(),city.getScore());
 	}
 
+	
+	/**
+	 * Delete single city from the database based on cityId
+	*/
 	@Override
 	public void deleteCity(int cityId) {
 		String sql = "DELETE FROM City WHERE cityid=?";
 		jdbcTemplate.update(sql, cityId);		
 	}
+	
+	/**
+	 * Add a single city from the database given cityId
+	*/
+	@Override
+	public City getCity(int cityId) {
+	    String sql = "SELECT * FROM City WHERE cityId=" + cityId;
+	    return jdbcTemplate.query(sql, new CityMapExtractor());
+	}
 
+	
+	/**
+	 * List  all the cities in the database based on stateId
+	*/
+	@Override
+	public List<City> listAllCities(int stateid) {
+		String sql = "SELECT * FROM city where stateid="+stateid;
+		List<City> listCity = jdbcTemplate.query(sql, new AllCityMapExtractor());
+		return listCity;
+	}
 
+	
+	
+	/**
+	 * List all the cities in a given state based based on total days
+	 * Criteria : Average Coverage <= totaldays to travel
+	 * 			  Cities belong to a particular state i.e stateid
+	*/
+	@Override
+	public List<City> getCoverageMeasure(final int totaldays,final int stateid) {
+		String sql = "select CITYID,CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
+		List<City> listCity = jdbcTemplate.query(sql, 
+				new PreparedStatementSetter() {
+						public void setValues(PreparedStatement preparedStatement) throws SQLException {
+							preparedStatement.setInt(1, totaldays);
+							preparedStatement.setInt(2, stateid);
+						}
+        		},
+				new CityMeasureExtractor());
+		return listCity;
+	}
+
+	
+	
+	
+	
 	private static final class CityMapExtractor implements ResultSetExtractor<City> {
 		@Override
         public City extractData(ResultSet rs) throws SQLException,
@@ -57,12 +110,6 @@ public class CityDAOImpl implements CityDAO {
  
             return null;
         }
-	}
-	
-	@Override
-	public City getCity(int cityId) {
-	    String sql = "SELECT * FROM City WHERE cityId=" + cityId;
-	    return jdbcTemplate.query(sql, new CityMapExtractor());
 	}
 	
 	
@@ -102,28 +149,6 @@ public class CityDAOImpl implements CityDAO {
 			}
 	}
 	
-	
-	@Override
-	public List<City> listAllCities(int stateid) {
-		String sql = "SELECT * FROM city where stateid="+stateid;
-		List<City> listCity = jdbcTemplate.query(sql, new AllCityMapExtractor());
-		return listCity;
-	}
-
-	@Override
-	public List<City> getCoverageMeasure(final int totaldays,final int stateid) {
-		String sql = "select CITYID,CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
-		List<City> listCity = jdbcTemplate.query(sql, 
-				new PreparedStatementSetter() {
-						public void setValues(PreparedStatement preparedStatement) throws SQLException {
-							preparedStatement.setInt(1, totaldays);
-							preparedStatement.setInt(2, stateid);
-						}
-        		},
-				new CityMeasureExtractor());
-		return listCity;
-	}
-
 	
 	 
 }
