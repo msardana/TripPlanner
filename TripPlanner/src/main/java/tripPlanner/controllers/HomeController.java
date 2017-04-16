@@ -95,9 +95,10 @@ public class HomeController {
     @RequestMapping(value="/check")
     public @ResponseBody void check() throws Exception 
     {
-        List<City>cities = v.getCitiestoVisit(cd.getCoverageMeasure(10, 20), 10);
+        List<City>cities = v.getCitiestoVisit(cd.getCoverageMeasure(10, 20), 10);		//test data
+        System.out.println("City Id\t\tCity Name\t\tCity Coverage\t\tCity Score");
         for(City c: cities){
-        	System.out.println(c.getCoverage());
+        	System.out.println(c.getCityId()+"\t"+c.getCityname()+"\t"+c.getCoverage()+"\t"+c.getScore());
         }
     }
     
