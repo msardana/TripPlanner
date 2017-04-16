@@ -104,7 +104,9 @@ public class HomeController {
     public @ResponseBody void check() throws Exception 
     {
         List<City>cities = v.getCitiestoVisit(cd.getCoverageMeasure(10, 20), 10);
-        System.out.println(cities);
+        for(City c: cities){
+        	System.out.println(c.getCityId());
+        }
     }
     
     
