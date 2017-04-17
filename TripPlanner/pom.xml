@@ -25,6 +25,12 @@
     <artifactId>spring-boot-starter-jdbc</artifactId>
     <version>1.4.1.RELEASE</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+<dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>13.0.1</version>
+</dependency>
 
           </dependencies>
   <build>
