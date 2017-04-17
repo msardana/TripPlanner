@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import tripPlanner.daos.CityDAO;
+import tripPlanner.daos.CityDAOImpl;
 import tripPlanner.daos.inputHelperDaOImpl;
 import tripPlanner.daos.inputHelperDao;
 import tripPlanner.interfaces.CityVisitingInterface;
@@ -24,8 +26,6 @@ import tripPlanner.services.googlemaps.RoundTripCreator;
 @Configuration
 @ComponentScan({ "tripPlanner.*" })
 public class BeanConfig extends WebMvcConfigurerAdapter {
-
-	
 	
 	@Bean
 	public DataSource getDataSource()   {
@@ -72,16 +72,21 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
 		return new inputHelperDaOImpl(getDataSource());
 	}
 	
+	@Bean
+	public CityDAO getCityDao()  {
+		return new CityDAOImpl(getDataSource());
+	}
+	
 	
 	@Bean
-	RoundTripCreator getRoundTripCreator()
+	public RoundTripCreator getRoundTripCreator()
 	{
 		return new RoundTripCreator();
 	}
 	
 	
 	@Bean
-	CityVisitingInterface getVisitingCities()
+	public CityVisitingInterface getVisitingCities()
 	{
 		return new VisitingCities();
 	}

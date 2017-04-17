@@ -1,5 +1,10 @@
 package tripPlanner.config;
 
+/*
+ * Stores GoogleAPIKey to access google maps API
+ * See <a href="https://console.developers.google.com/" >Google API</a>
+*/
+
 public class GoogleAPIKey {
 
 	String API_KEY=null;
