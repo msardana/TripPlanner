@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+import '../css/bootstrap.css';
 import LoginRegister from "./LoginRegister";
 import TransportMode from "./TransportMode";
 import SightSeeingBox from "./SightSeeingBox";

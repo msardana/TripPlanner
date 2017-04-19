@@ -52,3 +52,5 @@ ServiceXchange/.classpath
 # Code Recommenders
 .recommenders/
 /.apt_generated/
+/node/
+/node_modules/
