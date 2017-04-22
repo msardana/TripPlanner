@@ -80,8 +80,9 @@ public class CityDAOImpl implements CityDAO {
 				"from citycategoryrank\n" + 
 				"left outer join category on category.categoryid=citycategoryrank.categoryid\n" + 
 				"join city on city.cityid=citycategoryrank.cityid\n" + 
-				"where ((city.coveragemindays+city.coveragemaxdays)/2.0)<=? and stateid=? and category.categoryname=? \n" + 
-				"order by cityid";
+				"where ((city.coveragemindays+city.coveragemaxdays)/2.0)<=? and stateid=? and category.categoryname=? ";
+		
+		String optional_args = " or category.categoryname=? ";
 		
 		List<City> listCity = jdbcTemplate.query(sql, 
 				new PreparedStatementSetter() {
