@@ -37,7 +37,7 @@ public interface CityDAO {
     /**
 	 * List all the cities in a given state based based on total days and coverage
 	*/
-    public List<City> getCoverageMeasure(int totaldays, int stateid);
+    public List<City> getCoverageMeasure(int totaldays, int stateid, String category);
     
     
     
