@@ -12,7 +12,7 @@
 
 
 	<script async defer
-	src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAYBpc3Ve0q2PjngqgyaXU9pG_VuxhWtks&callback=initMap">
+	src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA1n7IZ2qQVXWFivgYlKg6NPvJA2LLYNI4&callback=initMap">
 	</script>
 	<script>
 	var result;
