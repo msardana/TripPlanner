@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-	<div id="map" style="float:right; width:30%;height:600px;"></div>
+	<div id="map" style="float:right; width:40%;height:700px;"></div>
 	<!-- <div id="directionsPanel" style="float:right;width:30%;height 100%"></div> -->
 
 
