@@ -74,13 +74,22 @@ public class CityDAOImpl implements CityDAO {
 	 * 			  Cities belong to a particular state i.e stateid
 	*/
 	@Override
-	public List<City> getCoverageMeasure(final int totaldays,final int stateid) {
-		String sql = "select CITYID,CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
+	public List<City> getCoverageMeasure(final int totaldays,final int stateid,final String category) {
+		//String sql = "select CITYID,CITYNAME,CITYCOORDINATES,((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0) COVERAGE,SCORE from city where ((COVERAGEMINDAYS+COVERAGEMAXDAYS)/2.0)<= ? and stateid= ?";
+		String sql =	"select city.cityid,city.cityname,city.citycoordinates,((city.coveragemindays+city.coveragemaxdays)/2.0) Coverage,COALESCE(city.score+citycategoryrank.score,city.score,citycategoryrank.score,0) score\n" + 
+				"from citycategoryrank\n" + 
+				"left outer join category on category.categoryid=citycategoryrank.categoryid\n" + 
+				"join city on city.cityid=citycategoryrank.cityid\n" + 
+				"where ((city.coveragemindays+city.coveragemaxdays)/2.0)<=? and stateid=? and category.categoryname=? ";
+		
+		String optional_args = " or category.categoryname=? ";
+		
 		List<City> listCity = jdbcTemplate.query(sql, 
 				new PreparedStatementSetter() {
 						public void setValues(PreparedStatement preparedStatement) throws SQLException {
 							preparedStatement.setInt(1, totaldays);
 							preparedStatement.setInt(2, stateid);
+							preparedStatement.setString(3, category);
 						}
         		},
 				new CityMeasureExtractor());
