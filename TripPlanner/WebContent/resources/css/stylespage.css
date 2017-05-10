@@ -1,0 +1,136 @@
+
+
+
+
+
+#textbox1, #textbox2 {
+    display: inline;
+    margin-right:25px;
+}
+
+#textbox3, #textbox4 {
+    display: inline;
+    margin-right:25px;
+}
+
+span{
+  border-radius: 5px;
+}
+
+div.colors {
+background: #F1FBFF;
+}
+
+input {
+  border-radius: 0px 5px 5px 0px;
+  height : 50px;
+  width : 350px;
+  border: 1px solid;
+}
+
+select {
+  border-radius: 0px 5px 5px 0px;
+  height : 50px;
+  width :400px;
+  border: 1px solid;
+}
+
+#cen{
+  text-align: left;
+}
+
+#total {
+float: left;
+width: 50%;
+height: auto;
+background:#857673;
+}
+
+
+
+#logo{
+height: 150px;
+background: url(../images/image1.png) no-repeat  #B93113 right ;
+background-position: 95% 50%;
+background-size: 60px 60px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #C3C3E5;
+    border-bottom: thin solid  black;
+
+}
+
+ ul li {
+    float: right;
+    display: inline block;
+}
+
+ul li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    background-color: #111;
+}
+#total1{
+  float: left;
+  width: 50%;
+  height:500px;
+  background:#857673;
+}
+
+#sideb {
+  margin: 0px;
+}
+
+#a2 {
+ width:100px;
+ height: 800px;
+ float: left;
+}
+#plantrip{
+  width: 140px;
+  height:125px;
+}
+#ongoingtrip{
+  width: 140px;
+  height:125px;
+}
+#mytripbook{
+  width: 140px;
+  height:125px;
+}
+#shareview{
+  width: 140px;
+  height:125px;
+}
+#l1{
+  height: 125px;
+}
+
+#a1{
+    width: 600px;
+    float: right;
+}
+#nav1{
+  width: 140px;
+  height: 500px;
+}
+#a5{
+  width: 1000px;
+  float: right;
+}
+#a4 {
+   float: left;
+  width: 1140px;
+  height: 50px;
+}
