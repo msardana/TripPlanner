@@ -3,12 +3,14 @@ package tripPlanner.controllers;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,7 @@ import tripPlanner.daos.CityDAO;
 import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.interfaces.PlanRoundTripInterface;
 import tripPlanner.models.City;
+import tripPlanner.models.directions.Directions;
 
 
 @Controller
@@ -40,28 +43,16 @@ public class HomeController {
     	return model;
     }
     
-    
-    
-    
-    
-    /*
-     * Incomplete mapping.........................
-    
-    @RequestMapping(value="/mapsdata",method = RequestMethod.GET, produces = "application/json")
-    public GoogleDirections mapsdata(String origin, ArrayList<String> waypoints) throws Exception 
-    {
-    	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfig.class);
-    	PlanRoundTripInterface pt = ctx.getBean(PlanRoundTripInterface.class);
-    	return pt.calcRoundTrip(origin, waypoints, TravelMode.DRIVING);
-    } */
-    
-    
-    
-    /*temporary mapping*/
     @RequestMapping(value = "/googlemaps")
     public ModelAndView loadmap(ModelAndView model, HttpServletRequest req, HttpServletResponse res) {
     	model.setViewName("directions");
     	return model;
+    }
+    
+    
+    @RequestMapping(value = "/getjson" , method = RequestMethod.POST)
+    public @ResponseBody void getJson(@RequestBody Directions mapresult) throws Exception {
+    	System.out.println(mapresult.getRoutes().get(0).getSummary());
     }
     
     
