@@ -9,7 +9,7 @@
 	
 	<div id="map" style="float:right; width:40%;height:700px;"></div>
 	<!-- <div id="directionsPanel" style="float:right;width:30%;height 100%"></div> -->
-
+	<div id="conte"></div>
 
 	<script async defer
 	src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDZlTVQ2nU1yXY1P7yc66KHhQdXvDUreG0&callback=initMap">
@@ -59,6 +59,23 @@
 	   directionsService.route(request, function(response, status) {
 	   	if(status == google.maps.DirectionsStatus.OK) {
 	   		directionsDisplay.setDirections(response);
+	   		console.log(JSON.stringify(response))
+	   		
+	   		var arr = response;
+	   		$.ajax({
+	   		    url: contextPath+"/getjson",
+	   		    type: 'POST',
+	   		    data: JSON.stringify(arr),
+	   		    contentType: 'application/json; charset=utf-8',
+	   		    dataType: 'json',
+	   		    async: false,
+	   		    success: function(msg) {
+	   		        alert(msg);
+	   		    }
+	   		});
+	   		
+	   		
+	   		
 	   	}
 	   });
 	}

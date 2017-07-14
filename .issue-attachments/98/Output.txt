@@ -1,0 +1,18 @@
+Cities to visit
+City Id		City Name		City Coverage		City Score
+27	Ujjain                          1.5				7
+15	Khajuraho                       1.5				8
+16	Maheshwar                       1.5				9
+18	Mando                           1.0				6
+19	Omkareshwar                     1.5				6
+24	Salkanpur                       1.0				4
+6	Burhanpur                       1.5				6
+13	Jabalpur                        1.5				5
+5	Bhopal                          1.5				9
+10	Hoshangabad                     1.0				7
+7	Chitrakoot                      1.0				3
+8	Datia                           1.0				3
+4	Bhimbetika                      1.0				3
+2	Bandhavgarh                     1.5				9
+17	Maiher                          1.0				10
+1	Amar Kantak                     1.0				10
