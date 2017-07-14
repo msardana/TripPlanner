@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,29 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LoginRegister = require("./LoginRegister");
+var _reactSidebar = require('react-sidebar');
 
-var _LoginRegister2 = _interopRequireDefault(_LoginRegister);
+var _reactSidebar2 = _interopRequireDefault(_reactSidebar);
 
-var _TransportMode = require("./TransportMode");
-
-var _TransportMode2 = _interopRequireDefault(_TransportMode);
-
-var _SightSeeingBox = require("./SightSeeingBox");
-
-var _SightSeeingBox2 = _interopRequireDefault(_SightSeeingBox);
-
-var _SideMenu = require("./SideMenu");
-
-var _SideMenu2 = _interopRequireDefault(_SideMenu);
-
-var _Planbox = require("./Planbox");
-
-var _Planbox2 = _interopRequireDefault(_Planbox);
+var _reactRouterDom = require('react-router-dom');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38,45 +24,66 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DestinationDetailBox = function (_React$Component) {
-  _inherits(DestinationDetailBox, _React$Component);
+var SideMenu = function (_React$Component) {
+  _inherits(SideMenu, _React$Component);
 
-  function DestinationDetailBox() {
-    _classCallCheck(this, DestinationDetailBox);
+  function SideMenu(props) {
+    _classCallCheck(this, SideMenu);
 
-    return _possibleConstructorReturn(this, (DestinationDetailBox.__proto__ || Object.getPrototypeOf(DestinationDetailBox)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SideMenu.__proto__ || Object.getPrototypeOf(SideMenu)).call(this, props));
   }
 
-  _createClass(DestinationDetailBox, [{
-    key: "render",
+  _createClass(SideMenu, [{
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
-        { className: "container", id: "s" },
+        'div',
+        { id: 'sidb' },
         _react2.default.createElement(
-          "div",
-          { id: "a4" },
-          _react2.default.createElement(_LoginRegister2.default, null)
-        ),
-        _react2.default.createElement(
-          "div",
-          { id: "a5" },
-          _react2.default.createElement(_Planbox2.default, null)
-        ),
-        _react2.default.createElement(
-          "div",
-          { id: "a3" },
+          'ul',
+          { id: 'nav1', className: 'igniteSidebar-nav' },
           _react2.default.createElement(
-            "div",
-            { id: "a2" },
-            _react2.default.createElement(_SideMenu2.default, null)
+            'li',
+            { id: 'plantrip' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { id: 'l1', to: '/plantripadminstration' },
+              'Plan Trip'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            { id: 'ongoingtrip' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { id: 'l1', to: '/ongoingtripadminstration' },
+              'OnGoing Trip'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            { id: 'mytripbook' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { id: 'l1', to: '/mytrupookadminstration' },
+              'My TripBook'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            { id: 'shareview' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { id: 'l1', to: '/shareviewadminstration' },
+              'share/view'
+            )
           )
         )
       );
     }
   }]);
 
-  return DestinationDetailBox;
+  return SideMenu;
 }(_react2.default.Component);
 
-exports.default = DestinationDetailBox;
+exports.default = SideMenu;

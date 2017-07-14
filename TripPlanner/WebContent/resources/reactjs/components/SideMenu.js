@@ -1,7 +1,8 @@
 import React from 'react';
 import Sidebar from 'react-sidebar';
 
-import { IndexLink, Link } from "react-router";
+import {Route, IndexLink, Link } from "react-router-dom";
+
 
 export default class SideMenu extends React.Component {
 

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
+var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,48 +30,57 @@ var LoginRegister = function (_React$Component) {
   }
 
   _createClass(LoginRegister, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { id: 'myTopnav' },
+        "div",
+        null,
         _react2.default.createElement(
-          'ul',
+          "ul",
           null,
           _react2.default.createElement(
-            'li',
+            "li",
             null,
             _react2.default.createElement(
-              'a',
-              { 'class': 'active', href: '#home' },
-              'REGISTER'
+              "a",
+              { href: "#home" },
+              "SHARE"
             )
           ),
           _react2.default.createElement(
-            'li',
+            "li",
             null,
             _react2.default.createElement(
-              'a',
-              { href: '#news' },
-              'LOGIN'
+              "a",
+              { href: "#news" },
+              "EDIT"
             )
           ),
           _react2.default.createElement(
-            'li',
+            "li",
             null,
             _react2.default.createElement(
-              'a',
-              { href: '#contact' },
-              'CUSTOMER CARE'
+              "a",
+              { href: "#contact" },
+              "VISUALIZE"
             )
           ),
           _react2.default.createElement(
-            'li',
+            "li",
             null,
             _react2.default.createElement(
-              'a',
-              { href: '#about' },
-              'DOWNLOAD APP'
+              "a",
+              { href: "#about" },
+              "PLAN"
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement(
+              "a",
+              { href: "#about" },
+              "HOME"
             )
           )
         )

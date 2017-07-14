@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
+
 import tripPlanner.daos.CityDAO;
 import tripPlanner.interfaces.CityVisitingInterface;
 import tripPlanner.interfaces.PlanRoundTripInterface;
 import tripPlanner.models.City;
 
 
-@Controller
+@RestController
 public class HomeController {
 	
 	@Autowired
@@ -34,11 +37,11 @@ public class HomeController {
 	@Autowired
 	CityVisitingInterface v;
 	
-    @RequestMapping(value = "/home" , method = RequestMethod.GET)
+ /*   @RequestMapping(value = "/home" , method = RequestMethod.GET)
     public ModelAndView  index(ModelAndView model, HttpServletRequest req, HttpServletResponse res) {
     	model.setViewName("index");
     	return model;
-    }
+    }*/
     
     
     
